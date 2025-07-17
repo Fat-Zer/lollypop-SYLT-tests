@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from mutagen.id3 import ID3, SYLT, Encoding
+from mutagen.id3 import ID3, SYLT, TIT2, Encoding
 
 import os, sys
 from shutil import copyfile
@@ -21,7 +21,7 @@ def create_test(name, data, v2_version=4):
     data.setdefault('type', 1)
 
     tag = ID3 (fn)
-    tag.title = name
+    tag.add(TIT2(text=name))
     tag.setall("SYLT", [SYLT(**data)])
     tag.save(v2_version=v2_version)
 
